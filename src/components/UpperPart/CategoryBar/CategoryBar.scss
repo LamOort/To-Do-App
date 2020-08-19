@@ -1,0 +1,14 @@
+.CategoryBar {
+  &__flex-container {
+    display: flex;
+    padding-top: 4.861vh;
+  }
+
+  &__add-btn {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,88 @@
+@import 'src/assets/sass/variables';
+
+.ToDoItem {
+  display: flex;
+  height: auto;
+  width: 100%;
+
+  &:hover &__delete-btn {
+    -webkit-animation: fade-in 1.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    animation: fade-in 1.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    visibility: visible;
+  }
+
+  &:not(:last-child) {
+    padding-bottom: 30px;
+  }
+
+  &__check-box {
+    height: 19px;
+    min-width: 19px;
+    border-radius: 50%;
+    border: 2.5px solid $light-grey;
+    background-color: #ffffff;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: $brickish-red;
+      border: none;
+      -webkit-animation: scale-up-center 0.4s ease-out both;
+      animation: scale-up-center 0.4s ease-out both;
+    }
+  }
+
+  &__category-color {
+    height: 19px;
+    min-width: 19px;
+    margin-left: 15px;
+  }
+
+  &__to-do-content {
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__delete-btn {
+    position: relative;
+    bottom: 4px;
+    margin-left: 15px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    visibility: hidden;
+
+    &:hover {
+      filter: invert(60%) sepia(53%) saturate(3554%) hue-rotate(324deg)
+        brightness(106%) contrast(94%);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+@-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,21 @@
+.InputField {
+  font-family: inherit;
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 8px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-family: inherit;
+    color: #cccccc;
+    font-size: 16px;
+  }
+}
