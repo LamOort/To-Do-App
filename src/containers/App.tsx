@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import Header from '../components/UpperPart/Header';
 import ProgressionBar from '../components/UpperPart/ProgressionBar';
@@ -13,7 +13,6 @@ import PopUpModal from '../components/PopUpModal';
 const App = () => {
   return (
     <div className="App">
-      <PopUpModal />
       <div className="BoxShadow">
         <div className="UpperPartWrapper">
           <Header />

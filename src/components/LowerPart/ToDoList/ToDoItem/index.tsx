@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import './ToDoItem.scss';
+import PopUpModal from '../../../PopUpModal';
 
 interface Props {
   categoryColor: string;
@@ -7,6 +8,12 @@ interface Props {
 }
 
 const ToDoItem = ({ categoryColor, toDoContent }: Props) => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const openDeleteTaskModal = () => {
+    setIsOpenModal(true);
+  };
+
   const categoryColorStyle = {
     backgroundColor: `${categoryColor}`,
   };
@@ -22,6 +29,7 @@ const ToDoItem = ({ categoryColor, toDoContent }: Props) => {
 
       <div>
         <svg
+          onClick={openDeleteTaskModal}
           className="ToDoItem__delete-btn"
           id="trash-solid"
           xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +46,8 @@ const ToDoItem = ({ categoryColor, toDoContent }: Props) => {
           />
         </svg>
       </div>
+
+      <PopUpModal isOpen={isOpenModal} modalType="DeleteTask" />
     </div>
   );
 };
