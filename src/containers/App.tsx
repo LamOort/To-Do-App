@@ -8,7 +8,6 @@ import ToDoList from '../components/LowerPart/ToDoList';
 
 import './App.scss';
 import StatusBar from '../components/StatusBar';
-import PopUpModal from '../components/PopUpModal';
 
 const App = () => {
   return (

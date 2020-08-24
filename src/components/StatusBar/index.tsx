@@ -1,9 +1,14 @@
 import * as React from 'react';
 import './StatusBar.scss';
+import { VISIBILITY_FILTERS } from '../../types';
 
-interface Props {}
+interface Props {
+  activeFilter: string;
+  setFilter: string;
+  taskCount: number;
+}
 
-const StatusBar = ({}: Props) => {
+const StatusBar = ({ activeFilter, setFilter, taskCount }: Props) => {
   return (
     <div className="StatusBar">
       <div>
@@ -11,6 +16,10 @@ const StatusBar = ({}: Props) => {
       </div>
 
       <div className="StatusBar__filterWrapper">
+        {Object.keys(VISIBILITY_FILTERS).map((fillerKey) => {
+          const currentFilter =
+        })}
+
         <div className="StatusBar__filter">
           <p>all</p>
         </div>
