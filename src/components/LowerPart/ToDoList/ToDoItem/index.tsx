@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import './ToDoItem.scss';
 import PopUpModal from '../../../PopUpModal';
+import { TOGGLE_TODO, TodoActionTypes } from '../../../../types';
 
 interface Props {
   categoryColor: string;
-  toDoContent: string;
+  toDoDescription: string;
+  checkboxHandlerFunc(): TodoActionTypes;
 }
 
-const ToDoItem = ({ categoryColor, toDoContent }: Props) => {
+const ToDoItem = ({
+  categoryColor,
+  toDoDescription,
+  checkboxHandlerFunc,
+}: Props) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openDeleteTaskModal = () => {
@@ -20,12 +28,16 @@ const ToDoItem = ({ categoryColor, toDoContent }: Props) => {
 
   return (
     <div className="ToDoItem">
-      <button type="button" className="ToDoItem__check-box"></button>
+      <button
+        onClick={checkboxHandlerFunc}
+        type="button"
+        className="ToDoItem__check-box"
+      ></button>
       <div
         className="ToDoItem__category-color"
         style={categoryColorStyle}
       ></div>
-      <span className="ToDoItem__to-do-content">{toDoContent}</span>
+      <span className="ToDoItem__to-do-content">{toDoDescription}</span>
 
       <div>
         <svg

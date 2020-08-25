@@ -1,10 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
   ToDoState,
+  TodoActionTypes,
   ADD_TODO,
   TOGGLE_TODO,
   DELETE_TODO,
-  TodoActionTypes,
+  MODIFY_TODO_CATEGORY_COLOR,
+  GET_ALL_TODO,
 } from '../../types';
 
 const toDoInitialState: ToDoState = {
@@ -44,7 +46,7 @@ export function todoReducer(
       return {
         ...state,
         todos: state.todos.map((todo) =>
-          todo.id === action.payload.id
+          todo.id === action.payload
             ? { ...todo, completed: !todo.completed }
             : todo
         ),
@@ -52,13 +54,19 @@ export function todoReducer(
     case DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
     case MODIFY_TODO_CATEGORY_COLOR:
       return {
         ...state,
-        todos: 
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload
+            ? { ...todo, categoryColor: todo.categoryColor }
+            : todo
+        ),
       };
+    case GET_ALL_TODO:
+      return state;
     default:
       return state;
   }

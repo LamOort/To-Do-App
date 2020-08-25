@@ -16,9 +16,9 @@ const StatusBar = ({ activeFilter, setFilter, taskCount }: Props) => {
       </div>
 
       <div className="StatusBar__filterWrapper">
-        {Object.keys(VISIBILITY_FILTERS).map((fillerKey) => {
+        {/* {Object.keys(VISIBILITY_FILTERS).map((fillerKey) => {
           const currentFilter =
-        })}
+        })} */}
 
         <div className="StatusBar__filter">
           <p>all</p>

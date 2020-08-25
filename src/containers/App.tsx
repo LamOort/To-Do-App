@@ -24,7 +24,7 @@ const App = () => {
         <InputFieldWrapper />
         <ToDoList />
       </div>
-      <StatusBar />
+      {/* <StatusBar /> */}
     </div>
   );
 };

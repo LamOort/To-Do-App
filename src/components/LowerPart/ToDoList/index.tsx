@@ -1,45 +1,34 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import ToDoItem from './ToDoItem';
+import { RootState } from '../../../redux/reducers';
 
 import './ToDoList.scss';
+import { Todo, TOGGLE_TODO, ToDoState } from '../../../types';
 
 const ToDoList = () => {
+  const listOfTodos = useSelector((state: RootState) => {
+    console.log(state);
+    return state.todo.todos;
+  });
+
+  const dispatch = useDispatch();
+
   return (
     <div className="ToDoList">
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. Vestibulum aliquet nunc a sapien malesuada, vitae faucibus dolor venenatis. Duis nunc tellus, tincidunt vitae consectetur sit amet, semper eu dolor. "
-      />
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. "
-      />
-      <ToDoItem categoryColor="#FF3838" toDoContent="Make my bed" />
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. "
-      />
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. "
-      />
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. "
-      />
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. "
-      />
-
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. "
-      />
-      <ToDoItem
-        categoryColor="#FF3838"
-        toDoContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero libero, scelerisque tempus neque eu, scelerisque pharetra ante. "
-      />
+      {listOfTodos.map((todo: Todo) => {
+        return (
+          <ToDoItem
+            key={todo.id}
+            categoryColor={todo.categoryColor}
+            toDoDescription={todo.description}
+            checkboxHandlerFunc={() =>
+              dispatch({ type: TOGGLE_TODO, payload: todo.id })
+            }
+          />
+        );
+      })}
     </div>
   );
 };

@@ -11,11 +11,12 @@ export interface ToDoState {
 }
 
 export interface Category {
+    id: string,
     name: string,
     color: string
 }
 
-export interface TodoState {
+export interface CategoryState {
     categories: Category[]
 }
 
@@ -41,7 +42,7 @@ interface GetAllTodoAction {
 
 interface ToggleTodoAction {
     type: typeof TOGGLE_TODO,
-    payload: Todo
+    payload: Todo['id']
 }
 
 interface AddTodoAction {
@@ -51,12 +52,12 @@ interface AddTodoAction {
 
 interface DeleteTodoAction {
     type: typeof DELETE_TODO,
-    payload: Todo
+    payload: Todo['id']
 }
 
 interface ModifyTodoCategoryColorAction {
     type: typeof MODIFY_TODO_CATEGORY_COLOR,
-    payload: Todo
+    payload: Todo['id']
 }
 
 export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetAllTodoAction | ModifyTodoCategoryColorAction | ToggleTodoAction;
@@ -64,7 +65,8 @@ export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetAllTodoActio
 //2) Types related to Category
 
 export const ADD_CATEGORY = 'ADD_CATEGORY'
-export const MODIFY_CATEGORY = 'MODIFY_CATEGORY'
+export const MODIFY_CATEGORY_NAME = 'MODIFY_CATEGORY_NAME'
+export const MODIFY_CATEGORY_COLOR = 'MODIFY_CATEGORY_COLOR'
 export const DELETE_CATEGORY = 'DELETE_CATEGORY'
 export const GET_ALL_CATEGORY = 'GET_ALL_CATEGORY'
 
@@ -74,28 +76,33 @@ interface AddCategoryAction {
     payload: Category
 }
 
-interface ModifyCategoryAction {
-    type: typeof MODIFY_CATEGORY,
-    payload: Category
+interface ModifyCategoryNameAction {
+    type: typeof MODIFY_CATEGORY_NAME,
+    payload: Category["id"]
+}
+
+interface ModifyCategoryColorAction {
+    type: typeof MODIFY_CATEGORY_COLOR,
+    payload: Category["id"]
 }
 
 interface DeleteCategoryAction {
     type: typeof DELETE_CATEGORY,
-    payload: Category
+    payload: Category["id"]
 }
 
 interface GetAllCategoryAction {
     type: typeof GET_ALL_CATEGORY,
-    payload: Category
+    payload?: Category
 }
 
-export type CategoryActionTypes = AddCategoryAction | ModifyCategoryAction | DeleteCategoryAction | GetAllCategoryAction;
+export type CategoryActionTypes = AddCategoryAction | ModifyCategoryNameAction | ModifyCategoryColorAction | DeleteCategoryAction | GetAllCategoryAction;
 
 
 //Types related to PopUpModal
 
 export const OPEN_MODAL = 'OPEN_MODAL';
-export const CLOSED_MODAL = 'CLOSED_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 interface OpenModalAction {
     type: typeof OPEN_MODAL;
@@ -120,6 +127,8 @@ export const VISIBILITY_FILTERS = {
 export const SET_FILTER = 'SET_FILTER'
 
 interface SetFilterAction {
-    type: typeof SetFilter,
+    type: typeof SET_FILTER,
     payload?: any
 }
+
+export type FilterActionsTypes = SetFilterAction
