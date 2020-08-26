@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import './ProgressionBar.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
+
 import { Todo } from '../../../types';
+import './ProgressionBar.scss';
 
 const ProgressionBar = () => {
   const listOfTodos: Todo[] = useSelector((state: RootState) => {
     return state.todosGlobal.todos;
-  });
+  }, shallowEqual);
 
   const completedTodosCounter: number = listOfTodos.filter((todo) => {
     return todo.completed;

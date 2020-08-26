@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import React from 'react';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 
 import { RootState } from '../../../redux/reducers';
 import { Category } from '../../../types';
 
 import AddButton from '../../../assets/plus-solid.svg';
-import PopUpModal from '../../PopUpModal';
-import DeleteForm from '../../Forms/DeleteForm';
 
 import CategoryElement from './CategoryElement';
 import './CategoryBar.scss';
+import { setModalType } from '../../../redux/actions/modalActions';
 
 const CategoryBar = () => {
   const listofCategories = useSelector((state: RootState) => {
     return state.categoriesGlobal.categories;
   }, shallowEqual);
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openCreateCategoryModal = () => {
-    setIsOpen(true);
-  };
+  const dispatch = useDispatch();
 
   return (
     <div className="CategoryBar__flex-container">
@@ -37,11 +32,10 @@ const CategoryBar = () => {
       <button
         type="button"
         className="CategoryBar__add-btn"
-        onClick={openCreateCategoryModal}
+        onClick={() => dispatch(setModalType('CategoryModal'))}
       >
         <img src={AddButton} alt="add button" />
       </button>
-      <PopUpModal isOpen={isOpen} modalType="CategoryModal" />
     </div>
   );
 };

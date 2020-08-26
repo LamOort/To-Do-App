@@ -36,10 +36,18 @@
 
     cursor: pointer;
 
-    &:hover,
-    &:active {
+    &:hover {
       color: #ffffff;
       background-color: $brickish-red;
+    }
+
+    &--active {
+      color: #ffffff;
+      background-color: $brickish-red;
+    }
+    &--inactive {
+      color: $brickish-red;
+      background-color: #ffffff;
     }
   }
 }

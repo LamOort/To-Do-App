@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import { useDispatch } from 'react-redux';
+import { TOGGLE_TODO } from '../../../../types';
 
 import './ToDoItem.scss';
-import PopUpModal from '../../../PopUpModal';
-import { TOGGLE_TODO } from '../../../../types';
+import { setModalType } from '../../../../redux/actions/modalActions';
 
 interface Props {
   todoId: string;
@@ -20,12 +21,6 @@ const ToDoItem = ({
 }: Props) => {
   const dispatch = useDispatch();
 
-  const [isOpenModal, setIsOpenModal] = useState(false);
-
-  const openDeleteTaskModal = () => {
-    setIsOpenModal(true);
-  };
-
   const categoryColorStyle = {
     backgroundColor: `${categoryColor}`,
   };
@@ -37,7 +32,7 @@ const ToDoItem = ({
           onClick={() => dispatch({ type: TOGGLE_TODO, payload: todoId })}
           type="checkbox"
           id={`checkbox-${todoId}`}
-          checked={toDoCompleted}
+          defaultChecked={toDoCompleted}
         />
         <label
           htmlFor={`checkbox-${todoId}`}
@@ -53,7 +48,7 @@ const ToDoItem = ({
 
       <div>
         <svg
-          onClick={openDeleteTaskModal}
+          onClick={() => dispatch(setModalType('DeleteTask'))}
           className="ToDoItem__delete-btn"
           id="trash-solid"
           xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +65,6 @@ const ToDoItem = ({
           />
         </svg>
       </div>
-
-      <PopUpModal isOpen={isOpenModal} modalType="DeleteTask" />
     </div>
   );
 };

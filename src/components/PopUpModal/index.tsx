@@ -1,57 +1,39 @@
-import * as React from 'react';
-import './PopUpModal.scss';
+import React from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+
 import CategoryForm from '../Forms/CategoryForm';
 import DeleteForm from '../Forms/DeleteForm';
 
-interface ModalProps {
-  isOpen: boolean;
-  modalType: string;
-}
+import { RootState } from '../../redux/reducers';
+import { setModalType } from '../../redux/actions/modalActions';
 
-const PopUpModal = ({ isOpen, modalType }: ModalProps) => {
-  if (modalType === 'CategoryModal') {
-    return (
-      <div
-        className={`PopUpModal__Wrapper PopUpModal__Wrapper--${
-          isOpen ? 'active' : 'hidden'
-        }`}
-      >
-        <div className="PopUpModal__Modal">
+import './PopUpModal.scss';
+
+const PopUpModal = () => {
+  const modalType = useSelector((state: RootState) => {
+    return state.modalTypeGlobal.modalType;
+  }, shallowEqual);
+
+  const dispatch = useDispatch();
+
+  return (
+    <div
+      className={`PopUpModal__Wrapper PopUpModal__Wrapper--${
+        modalType !== null ? 'active' : 'hidden'
+      }`}
+      onClick={() => dispatch(setModalType())}
+    >
+      <div className="PopUpModal__Modal">
+        {modalType === 'CategoryModal' ? (
           <CategoryForm />
-        </div>
-      </div>
-    );
-  }
-
-  if (modalType === 'DeleteCategory') {
-    return (
-      <div
-        className={`PopUpModal__Wrapper PopUpModal__Wrapper--${
-          isOpen ? 'active' : 'hidden'
-        }`}
-      >
-        <div className="PopUpModal__Modal">
+        ) : modalType === 'DeleteCategory' ? (
           <DeleteForm deleteType="category" />
-        </div>
-      </div>
-    );
-  }
-
-  if (modalType === 'DeleteTask') {
-    return (
-      <div
-        className={`PopUpModal__Wrapper PopUpModal__Wrapper--${
-          isOpen ? 'active' : 'hidden'
-        }`}
-      >
-        <div className="PopUpModal__Modal">
+        ) : modalType === 'DeleteTask' ? (
           <DeleteForm deleteType="task" />
-        </div>
+        ) : null}
       </div>
-    );
-  }
-
-  return null;
+    </div>
+  );
 };
 
 export default PopUpModal;

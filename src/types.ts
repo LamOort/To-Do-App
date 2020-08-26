@@ -21,7 +21,7 @@ export interface CategoryState {
 }
 
 export interface ModalState {
-    isOpen: boolean
+    modalType: string | null
 }
 
 
@@ -101,43 +101,15 @@ export type CategoryActionTypes = AddCategoryAction | ModifyCategoryNameAction |
 
 //Types related to PopUpModal
 
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const CLOSE_MODAL = 'CLOSE_MODAL';
-
-interface OpenModalAction {
-    type: typeof OPEN_MODAL;
-    payload?: any
-}
-
-interface CloseModalAction {
-    type: typeof CLOSE_MODAL;
-    payload?: any
-}
-
-export type ModalActionsTypes = OpenModalAction | CloseModalAction;
+export const SET_MODAL_TYPE = 'SET_MODAL_TYPE';
 
 
-// Todo Visibility (all, completed, ongoing)
-export const VisibilityFilters = {
-    ALL: "ALL",
-    COMPLETED: "COMPLETED",
-    ONGOING: "ONGOING"
-};
-
-
-interface SetAllVisibilityFilterAction {
-    type: typeof VisibilityFilters.ALL
+interface SetModalTypeAction {
+    type: typeof SET_MODAL_TYPE
     payload: string
 }
 
-interface SetCompletedVisibilityFilterAction {
-    type: typeof VisibilityFilters.COMPLETED
-    payload: string
-}
 
-interface SetOngoingVisibilityFilterAction {
-    type: typeof VisibilityFilters.ONGOING
-    payload: string
-}
+export type ModalActionsTypes = SetModalTypeAction
 
-export type FilterActionsTypes = SetAllVisibilityFilterAction | SetOngoingVisibilityFilterAction | SetCompletedVisibilityFilterAction
+

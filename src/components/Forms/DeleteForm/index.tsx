@@ -7,7 +7,7 @@ interface deleteFormProps {
 const DeleteForm = ({ deleteType }: deleteFormProps) => {
   return (
     <div>
-      <button>delete this {deleteType}</button>
+      <button>Delete this {deleteType}</button>
       <button>Cancel</button>
     </div>
   );

@@ -51,8 +51,8 @@
     &:checked {
       background-color: $brickish-red;
       border: none;
-      -webkit-animation: scale-up-center 0.2s ease-out both;
-      animation: scale-up-center 0.2s ease-out both;
+      -webkit-animation: scale-up-center 0.05s ease-out both;
+      animation: scale-up-center 0.05s ease-out both;
     }
   }
 

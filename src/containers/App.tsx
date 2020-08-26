@@ -8,6 +8,7 @@ import ToDoList from '../components/LowerPart/ToDoList';
 
 import './App.scss';
 import StatusBar from '../components/StatusBar';
+import PopUpModal from '../components/PopUpModal';
 
 const App = React.memo(() => {
   const [selectedFilter, setSelectedFilter] = useState('all');
@@ -28,6 +29,7 @@ const App = React.memo(() => {
         <ToDoList filterNameHasBeenClicked={filterClickedData} />
       </div>
       <StatusBar clickedFilter={setSelectedFilter} />
+      <PopUpModal />
     </div>
   );
 });
