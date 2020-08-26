@@ -1,13 +1,33 @@
 @import 'src/assets/sass/variables';
 
+//styling checkbox
+.round {
+  position: relative;
+}
+
+.round input[type='checkbox'] {
+  visibility: hidden;
+}
+
+.round input[type='checkbox']:checked + label {
+  background-color: $brickish-red;
+  border-color: $brickish-red;
+}
+
+.round input[type='checkbox'] {
+  opacity: 0;
+  height: 19px;
+  min-width: 19px;
+}
+
 .ToDoItem {
   display: flex;
   height: auto;
   width: 100%;
 
   &:hover &__delete-btn {
-    -webkit-animation: fade-in 1.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-    animation: fade-in 1.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     visibility: visible;
   }
 
@@ -16,22 +36,23 @@
   }
 
   &__check-box {
+    position: absolute;
     height: 19px;
     min-width: 19px;
     border-radius: 50%;
-    border: 2.5px solid $light-grey;
+    border: 1px solid $light-grey;
     background-color: #ffffff;
+    left: 0;
+    top: 0;
     cursor: pointer;
+    outline: none;
 
-    &:focus {
-      outline: none;
-    }
-
-    &:hover {
+    &:hover,
+    &:checked {
       background-color: $brickish-red;
       border: none;
-      -webkit-animation: scale-up-center 0.4s ease-out both;
-      animation: scale-up-center 0.4s ease-out both;
+      -webkit-animation: scale-up-center 0.2s ease-out both;
+      animation: scale-up-center 0.2s ease-out both;
     }
   }
 

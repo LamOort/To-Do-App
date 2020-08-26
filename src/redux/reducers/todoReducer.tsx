@@ -67,6 +67,7 @@ export function todoReducer(
       };
     case GET_ALL_TODO:
       return state;
+
     default:
       return state;
   }

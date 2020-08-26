@@ -1,32 +1,47 @@
-import * as React from 'react';
+import React from 'react';
+
 import './StatusBar.scss';
-import { VISIBILITY_FILTERS } from '../../types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/reducers';
 
-interface Props {
-  activeFilter: string;
-  setFilter: string;
-  taskCount: number;
-}
+const StatusBar = (props: any) => {
+  const listOfTodos = useSelector((state: RootState) => {
+    return state.todosGlobal.todos;
+  });
 
-const StatusBar = ({ activeFilter, setFilter, taskCount }: Props) => {
+  const ongoingTodosCounter: number = listOfTodos.filter((todo) => {
+    return !todo.completed;
+  }).length;
+
   return (
     <div className="StatusBar">
       <div>
-        <p className="StatusBar__text">8 tasks left</p>
+        <p className="StatusBar__text">{ongoingTodosCounter} tasks left</p>
       </div>
 
       <div className="StatusBar__filterWrapper">
-        {/* {Object.keys(VISIBILITY_FILTERS).map((fillerKey) => {
-          const currentFilter =
-        })} */}
-
-        <div className="StatusBar__filter">
+        <div
+          className="StatusBar__filter"
+          onClick={() => {
+            props.clickedFilter('all');
+          }}
+        >
           <p>all</p>
         </div>
-        <div className="StatusBar__filter">
+        <div
+          className="StatusBar__filter"
+          onClick={() => {
+            props.clickedFilter('ongoing');
+          }}
+        >
           <p>ongoing</p>
         </div>
-        <div className="StatusBar__filter">
+        <div
+          className="StatusBar__filter"
+          onClick={() => {
+            props.clickedFilter('completed');
+          }}
+        >
           <p>compeleted</p>
         </div>
       </div>

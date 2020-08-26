@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import AddButton from '../../../assets/plus-solid.svg';
+import { useSelector, shallowEqual } from 'react-redux';
 
-import CategoryElement from './CategoryElement';
-import './CategoryBar.scss';
+import { RootState } from '../../../redux/reducers';
+import { Category } from '../../../types';
+
+import AddButton from '../../../assets/plus-solid.svg';
 import PopUpModal from '../../PopUpModal';
 import DeleteForm from '../../Forms/DeleteForm';
 
+import CategoryElement from './CategoryElement';
+import './CategoryBar.scss';
+
 const CategoryBar = () => {
+  const listofCategories = useSelector((state: RootState) => {
+    return state.categoriesGlobal.categories;
+  }, shallowEqual);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openCreateCategoryModal = () => {
@@ -15,9 +24,16 @@ const CategoryBar = () => {
 
   return (
     <div className="CategoryBar__flex-container">
-      <CategoryElement categoryName="Homework" categoryColor="#38C9FF" />
-      <CategoryElement categoryName="Assignment" categoryColor="#FFAB38" />
-      <CategoryElement categoryName="Work" categoryColor="#FF3838" />
+      {listofCategories.map((category: Category) => {
+        return (
+          <CategoryElement
+            key={category.id}
+            categoryName={category.name}
+            categoryColor={category.color}
+          />
+        );
+      })}
+
       <button
         type="button"
         className="CategoryBar__add-btn"

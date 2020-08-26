@@ -1,36 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector, shallowEqual } from 'react-redux';
 
 import ToDoItem from './ToDoItem';
 import { RootState } from '../../../redux/reducers';
 
 import './ToDoList.scss';
-import { Todo, TOGGLE_TODO, ToDoState } from '../../../types';
+import { Todo } from '../../../types';
 
-const ToDoList = () => {
+const ToDoList = React.memo((props: any) => {
   const listOfTodos = useSelector((state: RootState) => {
-    console.log(state);
-    return state.todo.todos;
-  });
+    return state.todosGlobal.todos;
+  }, shallowEqual);
 
-  const dispatch = useDispatch();
-
-  return (
-    <div className="ToDoList">
-      {listOfTodos.map((todo: Todo) => {
-        return (
-          <ToDoItem
-            key={todo.id}
-            categoryColor={todo.categoryColor}
-            toDoDescription={todo.description}
-            checkboxHandlerFunc={() =>
-              dispatch({ type: TOGGLE_TODO, payload: todo.id })
-            }
-          />
-        );
-      })}
-    </div>
+  const filteredCompletedTodos = listOfTodos.filter(
+    (todo) => todo.completed === true
   );
-};
+
+  const filteredOngoingTodos = listOfTodos.filter((todo) => !todo.completed);
+
+  console.log(filteredOngoingTodos);
+
+  if (props.filterNameHasBeenClicked === 'all') {
+    return (
+      <div className="ToDoList">
+        {listOfTodos.map((todo: Todo) => {
+          return (
+            <ToDoItem
+              key={todo.id}
+              todoId={todo.id}
+              categoryColor={todo.categoryColor}
+              toDoDescription={todo.description}
+              toDoCompleted={todo.completed}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+
+  if (props.filterNameHasBeenClicked === 'completed') {
+    return (
+      <div className="ToDoList">
+        {filteredCompletedTodos.map((todo: Todo) => {
+          return (
+            <ToDoItem
+              key={todo.id}
+              todoId={todo.id}
+              categoryColor={todo.categoryColor}
+              toDoDescription={todo.description}
+              toDoCompleted={todo.completed}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+
+  if (props.filterNameHasBeenClicked === 'ongoing') {
+    return (
+      <div className="ToDoList">
+        {filteredOngoingTodos.map((todo: Todo) => {
+          return (
+            <ToDoItem
+              key={todo.id}
+              todoId={todo.id}
+              categoryColor={todo.categoryColor}
+              toDoDescription={todo.description}
+              toDoCompleted={todo.completed}
+            />
+          );
+        })}
+      </div>
+    );
+  } else return null;
+});
 
 export default ToDoList;

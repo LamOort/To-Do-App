@@ -118,17 +118,26 @@ export type ModalActionsTypes = OpenModalAction | CloseModalAction;
 
 
 // Todo Visibility (all, completed, ongoing)
-export const VISIBILITY_FILTERS = {
-    ALL: "all",
-    COMPLETED: "completed",
-    ONGOING: "ongoing"
+export const VisibilityFilters = {
+    ALL: "ALL",
+    COMPLETED: "COMPLETED",
+    ONGOING: "ONGOING"
 };
 
-export const SET_FILTER = 'SET_FILTER'
 
-interface SetFilterAction {
-    type: typeof SET_FILTER,
-    payload?: any
+interface SetAllVisibilityFilterAction {
+    type: typeof VisibilityFilters.ALL
+    payload: string
 }
 
-export type FilterActionsTypes = SetFilterAction
+interface SetCompletedVisibilityFilterAction {
+    type: typeof VisibilityFilters.COMPLETED
+    payload: string
+}
+
+interface SetOngoingVisibilityFilterAction {
+    type: typeof VisibilityFilters.ONGOING
+    payload: string
+}
+
+export type FilterActionsTypes = SetAllVisibilityFilterAction | SetOngoingVisibilityFilterAction | SetCompletedVisibilityFilterAction

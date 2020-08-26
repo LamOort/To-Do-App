@@ -1,12 +1,24 @@
 import * as React from 'react';
 
 import './ProgressionBar.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/reducers';
+import { Todo } from '../../../types';
 
-interface Props {
-  completion: number;
-}
+const ProgressionBar = () => {
+  const listOfTodos: Todo[] = useSelector((state: RootState) => {
+    return state.todosGlobal.todos;
+  });
 
-const ProgressionBar = ({ completion }: Props) => {
+  const completedTodosCounter: number = listOfTodos.filter((todo) => {
+    return todo.completed;
+  }).length;
+
+  const completion: string = (
+    (completedTodosCounter / listOfTodos.length) *
+    100
+  ).toFixed();
+
   const fillerStyle = {
     width: `${completion}%`,
   };

@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import './ToDoItem.scss';
 import PopUpModal from '../../../PopUpModal';
-import { TOGGLE_TODO, TodoActionTypes } from '../../../../types';
+import { TOGGLE_TODO } from '../../../../types';
 
 interface Props {
+  todoId: string;
   categoryColor: string;
   toDoDescription: string;
-  checkboxHandlerFunc(): TodoActionTypes;
+  toDoCompleted: boolean;
 }
 
 const ToDoItem = ({
+  todoId,
   categoryColor,
   toDoDescription,
-  checkboxHandlerFunc,
+  toDoCompleted,
 }: Props) => {
+  const dispatch = useDispatch();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openDeleteTaskModal = () => {
@@ -28,11 +32,19 @@ const ToDoItem = ({
 
   return (
     <div className="ToDoItem">
-      <button
-        onClick={checkboxHandlerFunc}
-        type="button"
-        className="ToDoItem__check-box"
-      ></button>
+      <div className="round">
+        <input
+          onClick={() => dispatch({ type: TOGGLE_TODO, payload: todoId })}
+          type="checkbox"
+          id={`checkbox-${todoId}`}
+          checked={toDoCompleted}
+        />
+        <label
+          htmlFor={`checkbox-${todoId}`}
+          className="ToDoItem__check-box"
+        ></label>
+      </div>
+
       <div
         className="ToDoItem__category-color"
         style={categoryColorStyle}
