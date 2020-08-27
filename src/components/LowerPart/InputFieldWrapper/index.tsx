@@ -12,7 +12,7 @@ const InputFieldWrapper = () => {
       <button
         className="square-button"
         type="button"
-        onClick={() => dispatch(setModalType('ChooseCategoryForm'))}
+        onClick={() => dispatch(setModalType('ChooseCategory'))}
       ></button>
       <InputField />
     </div>

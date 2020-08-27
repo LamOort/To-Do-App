@@ -2,9 +2,7 @@ import {
   Category,
   ADD_CATEGORY,
   DELETE_CATEGORY,
-  MODIFY_CATEGORY_NAME,
-  MODIFY_CATEGORY_COLOR,
-  GET_ALL_CATEGORY,
+  MODIFY_CATEGORY,
 } from '../../types';
 
 export const addCategoryAction = (category: Category) => ({
@@ -17,17 +15,12 @@ export const deleteCategoryAction = (categoryId: Category['id']) => ({
   payload: categoryId,
 });
 
-export const modifyCategoryNameAction = (categoryId: Category['id']) => ({
-  type: MODIFY_CATEGORY_NAME,
-  payload: categoryId,
-});
-
-export const modifyCategoryColorAction = (categoryId: Category['id']) => ({
-  type: MODIFY_CATEGORY_COLOR,
-  payload: categoryId,
-});
-
-export const getAllCategory = (category: Category) => ({
-  type: GET_ALL_CATEGORY,
+export const modifyCategoryAction = (category: Category) => ({
+  type: MODIFY_CATEGORY,
   payload: category,
 });
+
+/* export const getAllCategory = (category: Category) => ({
+  type: GET_ALL_CATEGORY,
+  payload: category,
+}); */

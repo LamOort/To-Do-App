@@ -6,7 +6,7 @@ import {
   TOGGLE_TODO,
   DELETE_TODO,
   MODIFY_TODO,
-  GET_ALL_TODO,
+  GET_CAPTURED_TODO_ID,
 } from '../../types';
 
 const toDoInitialState: ToDoState = {
@@ -30,6 +30,7 @@ const toDoInitialState: ToDoState = {
       categoryColor: '#FFAB38',
     },
   ],
+  capturedTodoId: '',
 };
 
 export function todoReducer(
@@ -72,8 +73,11 @@ export function todoReducer(
           ],
         };
       else return state;
-    case GET_ALL_TODO:
-      return state;
+    case GET_CAPTURED_TODO_ID:
+      return {
+        ...state,
+        capturedTodoId: Object.assign({}, state.capturedTodoId, action.payload),
+      };
 
     default:
       return state;

@@ -4,9 +4,8 @@ import {
   CategoryActionTypes,
   ADD_CATEGORY,
   DELETE_CATEGORY,
-  MODIFY_CATEGORY_NAME,
-  MODIFY_CATEGORY_COLOR,
-  GET_ALL_CATEGORY,
+  MODIFY_CATEGORY,
+  GET_CAPTURED_CATEGORY_ID,
 } from '../../types';
 
 const categoryInitialState: CategoryState = {
@@ -27,6 +26,7 @@ const categoryInitialState: CategoryState = {
       color: '#38C9FF',
     },
   ],
+  capturedCategoryId: '',
 };
 
 export function categoryReducer(
@@ -46,26 +46,32 @@ export function categoryReducer(
           (category) => category.id !== action.payload
         ),
       };
-    case MODIFY_CATEGORY_NAME:
+
+    case MODIFY_CATEGORY:
+      const categoryFound = state.categories.find(
+        (category) => category.id === action.payload.id
+      );
+      const categoryFoundIndex = state.categories.findIndex(
+        (category) => category.id === action.payload.id
+      );
+      if (categoryFound !== undefined)
+        return {
+          ...state,
+          categories: [
+            ...state.categories,
+            ...state.categories.splice(categoryFoundIndex, 1, action.payload),
+          ],
+        };
+      else return state;
+    case GET_CAPTURED_CATEGORY_ID:
       return {
         ...state,
-        categories: state.categories.map((category) =>
-          category.id === action.payload
-            ? { ...category, name: category.name }
-            : category
+        capturedCategoryId: Object.assign(
+          {},
+          state.capturedCategoryId,
+          action.payload
         ),
       };
-    case MODIFY_CATEGORY_COLOR:
-      return {
-        ...state,
-        categories: state.categories.map((category) =>
-          category.id === action.payload
-            ? { ...category, color: category.color }
-            : category
-        ),
-      };
-    case GET_ALL_CATEGORY:
-      return state;
     default:
       return state;
   }

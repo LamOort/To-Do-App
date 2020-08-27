@@ -28,13 +28,13 @@ const PopUpModal = () => {
         style={{ height: '100%', width: '100' }}
       ></div>
       <div className="PopUpModal__Modal">
-        {modalType === 'CategoryModal' ? (
+        {modalType === 'Category' ? (
           <CategoryForm />
         ) : modalType === 'DeleteCategory' ? (
           <DeleteForm deleteType="category" />
         ) : modalType === 'DeleteTask' ? (
           <DeleteForm deleteType="task" />
-        ) : modalType === 'ChooseCategoryForm' ? (
+        ) : modalType === 'ChooseCategory' ? (
           <ChooseCategoryForm />
         ) : null}
       </div>

@@ -4,7 +4,7 @@ import {
   DELETE_TODO,
   MODIFY_TODO,
   Todo,
-  GET_ALL_TODO,
+  GET_CAPTURED_TODO_ID,
 } from '../../types';
 
 export const addTodoAction = (todo: Todo) => ({
@@ -22,12 +22,12 @@ export const deleteTodoAction = (todoId: Todo['id']) => ({
   payload: todoId,
 });
 
-export const ModifyTodoAction = (todo: Todo) => ({
+export const modifyTodoAction = (todo: Todo) => ({
   type: MODIFY_TODO,
   payload: todo,
 });
 
-export const getAllTodo = (todo: Todo) => ({
-  type: GET_ALL_TODO,
-  payload: todo,
+export const getCapturedTodoIdAction = (todoId: Todo['id']) => ({
+  type: GET_CAPTURED_TODO_ID,
+  payload: todoId,
 });

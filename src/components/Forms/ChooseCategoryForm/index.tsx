@@ -38,7 +38,7 @@ const ChooseCategoryForm = () => {
           height="20"
           viewBox="0 0 20 20"
           className="ChooseCategory__addbtn"
-          onClick={() => dispatch(setModalType('CategoryModal'))}
+          onClick={() => dispatch(setModalType('Category'))}
         >
           <path
             id="plus-solid"

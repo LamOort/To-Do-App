@@ -20,20 +20,22 @@ const CategoryBar = () => {
     <div className="CategoryBar__flex-container">
       {listofCategories.map((category: Category) => {
         return (
-          <CategoryElement
-            key={category.id}
-            categoryId={category.id}
-            categoryName={category.name}
-            categoryColor={category.color}
-            isModalStyle={false}
-          />
+          <div onClick={() => dispatch(setModalType('Category'))}>
+            <CategoryElement
+              key={category.id}
+              categoryId={category.id}
+              categoryName={category.name}
+              categoryColor={category.color}
+              isModalStyle={false}
+            />
+          </div>
         );
       })}
 
       <button
         type="button"
         className="CategoryBar__add-btn"
-        onClick={() => dispatch(setModalType('CategoryModal'))}
+        onClick={() => dispatch(setModalType('Category'))}
       >
         <img src={AddButton} alt="add button" />
       </button>
