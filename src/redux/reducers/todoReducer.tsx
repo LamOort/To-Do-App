@@ -5,7 +5,7 @@ import {
   ADD_TODO,
   TOGGLE_TODO,
   DELETE_TODO,
-  MODIFY_TODO_CATEGORY_COLOR,
+  MODIFY_TODO,
   GET_ALL_TODO,
 } from '../../types';
 
@@ -56,15 +56,22 @@ export function todoReducer(
         ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
-    case MODIFY_TODO_CATEGORY_COLOR:
-      return {
-        ...state,
-        todos: state.todos.map((todo) =>
-          todo.id === action.payload
-            ? { ...todo, categoryColor: todo.categoryColor }
-            : todo
-        ),
-      };
+    case MODIFY_TODO:
+      const todoFound = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      );
+      const todoFoundIndex = state.todos.findIndex(
+        (todo) => todo.id === action.payload.id
+      );
+      if (todoFound !== undefined)
+        return {
+          ...state,
+          todos: [
+            ...state.todos,
+            ...state.todos.splice(todoFoundIndex, 1, action.payload),
+          ],
+        };
+      else return state;
     case GET_ALL_TODO:
       return state;
 

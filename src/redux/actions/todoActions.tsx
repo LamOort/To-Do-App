@@ -2,7 +2,7 @@ import {
   ADD_TODO,
   TOGGLE_TODO,
   DELETE_TODO,
-  MODIFY_TODO_CATEGORY_COLOR,
+  MODIFY_TODO,
   Todo,
   GET_ALL_TODO,
 } from '../../types';
@@ -22,9 +22,9 @@ export const deleteTodoAction = (todoId: Todo['id']) => ({
   payload: todoId,
 });
 
-export const ModifyTodoCategoryColorAction = (todoId: Todo['id']) => ({
-  type: MODIFY_TODO_CATEGORY_COLOR,
-  payload: todoId,
+export const ModifyTodoAction = (todo: Todo) => ({
+  type: MODIFY_TODO,
+  payload: todo,
 });
 
 export const getAllTodo = (todo: Todo) => ({

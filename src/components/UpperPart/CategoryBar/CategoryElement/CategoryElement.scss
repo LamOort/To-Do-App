@@ -16,5 +16,21 @@
     cursor: pointer;
     position: relative;
     z-index: 1;
+
+    &--modal {
+      font-size: 16px;
+      padding-left: 8px;
+
+      display: inline-block;
+    }
+  }
+
+  &--modal {
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    &:hover > * {
+      color: #ffffff;
+    }
   }
 }

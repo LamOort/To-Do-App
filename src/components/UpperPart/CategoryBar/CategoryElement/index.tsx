@@ -1,16 +1,23 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import './CategoryElement.scss';
 
 interface Props {
+  categoryId: string;
   categoryColor: string;
   categoryName: string;
+  isModalStyle: boolean;
 }
 
-const CategoryElement = ({ categoryColor, categoryName }: Props) => {
+const CategoryElement = ({
+  categoryId,
+  categoryColor,
+  categoryName,
+  isModalStyle,
+}: Props) => {
   const CategoryElementStyled: any = styled.div`
-    border-left: 14px solid ${categoryColor};
+    border-left: 10px solid ${categoryColor};
     transition: background-color 0.8s ease;
 
     &:hover {
@@ -19,8 +26,16 @@ const CategoryElement = ({ categoryColor, categoryName }: Props) => {
   `;
 
   return (
-    <CategoryElementStyled className="CategoryElement">
-      <div className="CategoryElement__text-part">
+    <CategoryElementStyled
+      className={isModalStyle ? 'CategoryElement--modal' : 'CategoryElement'}
+    >
+      <div
+        className={
+          isModalStyle
+            ? 'CategoryElement__text-part--modal'
+            : 'CategoryElement__text-part'
+        }
+      >
         <p>{categoryName}</p>
       </div>
     </CategoryElementStyled>

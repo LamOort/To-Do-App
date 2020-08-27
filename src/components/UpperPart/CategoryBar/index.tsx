@@ -3,12 +3,11 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 
 import { RootState } from '../../../redux/reducers';
 import { Category } from '../../../types';
-
-import AddButton from '../../../assets/plus-solid.svg';
+import { setModalType } from '../../../redux/actions/modalActions';
 
 import CategoryElement from './CategoryElement';
+import AddButton from '../../../assets/plus-solid.svg';
 import './CategoryBar.scss';
-import { setModalType } from '../../../redux/actions/modalActions';
 
 const CategoryBar = () => {
   const listofCategories = useSelector((state: RootState) => {
@@ -23,8 +22,10 @@ const CategoryBar = () => {
         return (
           <CategoryElement
             key={category.id}
+            categoryId={category.id}
             categoryName={category.name}
             categoryColor={category.color}
+            isModalStyle={false}
           />
         );
       })}

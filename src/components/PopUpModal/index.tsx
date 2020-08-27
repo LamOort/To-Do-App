@@ -8,6 +8,7 @@ import { RootState } from '../../redux/reducers';
 import { setModalType } from '../../redux/actions/modalActions';
 
 import './PopUpModal.scss';
+import ChooseCategoryForm from '../Forms/ChooseCategoryForm';
 
 const PopUpModal = () => {
   const modalType = useSelector((state: RootState) => {
@@ -21,8 +22,11 @@ const PopUpModal = () => {
       className={`PopUpModal__Wrapper PopUpModal__Wrapper--${
         modalType !== null ? 'active' : 'hidden'
       }`}
-      onClick={() => dispatch(setModalType())}
     >
+      <div
+        onClick={() => dispatch(setModalType())}
+        style={{ height: '100%', width: '100' }}
+      ></div>
       <div className="PopUpModal__Modal">
         {modalType === 'CategoryModal' ? (
           <CategoryForm />
@@ -30,6 +34,8 @@ const PopUpModal = () => {
           <DeleteForm deleteType="category" />
         ) : modalType === 'DeleteTask' ? (
           <DeleteForm deleteType="task" />
+        ) : modalType === 'ChooseCategoryForm' ? (
+          <ChooseCategoryForm />
         ) : null}
       </div>
     </div>

@@ -33,7 +33,7 @@ export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const GET_ALL_TODO = 'GET_ALL_TODO';
-export const MODIFY_TODO_CATEGORY_COLOR = 'MODIFY_TODO_CATEGORY_COLOR';
+export const MODIFY_TODO = 'MODIFY_TODO';
 
 interface GetAllTodoAction {
     type: typeof GET_ALL_TODO,
@@ -55,12 +55,12 @@ interface DeleteTodoAction {
     payload: Todo['id']
 }
 
-interface ModifyTodoCategoryColorAction {
-    type: typeof MODIFY_TODO_CATEGORY_COLOR,
-    payload: Todo['id']
+interface ModifyTodoAction {
+    type: typeof MODIFY_TODO,
+    payload: Todo
 }
 
-export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetAllTodoAction | ModifyTodoCategoryColorAction | ToggleTodoAction;
+export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetAllTodoAction | ModifyTodoAction | ToggleTodoAction;
 
 //2) Types related to Category
 
