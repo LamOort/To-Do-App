@@ -1,17 +1,24 @@
 import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
 
 import CategoryElement from '../../UpperPart/CategoryBar/CategoryElement';
 import { setModalType } from '../../../redux/actions/modalActions';
 
 import './ChooseCategoryForm.scss';
+import { getCapturedCategoryIdAction } from '../../../redux/actions/categoryActions';
+import { Todo } from '../../../types';
+import { modifyTodoAction } from '../../../redux/actions/todoActions';
 
 const ChooseCategoryForm = () => {
   const listofCategories = useSelector((state: RootState) => {
     return state.categoriesGlobal.categories;
-  });
+  }, shallowEqual);
+
+  const listOfTodos = useSelector((state: RootState) => {
+    return state.todosGlobal.todos;
+  }, shallowEqual);
 
   const dispatch = useDispatch();
 
@@ -20,7 +27,11 @@ const ChooseCategoryForm = () => {
       <div className="ChooseCategory__Wrapper">
         {listofCategories.map((category) => {
           return (
-            <div>
+            <div
+              onClick={() => {
+                dispatch(getCapturedCategoryIdAction(category.id));
+              }}
+            >
               <CategoryElement
                 key={category.id}
                 categoryId={category.id}

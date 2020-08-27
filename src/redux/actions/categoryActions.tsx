@@ -3,6 +3,7 @@ import {
   ADD_CATEGORY,
   DELETE_CATEGORY,
   MODIFY_CATEGORY,
+  GET_CAPTURED_CATEGORY_ID,
 } from '../../types';
 
 export const addCategoryAction = (category: Category) => ({
@@ -20,7 +21,7 @@ export const modifyCategoryAction = (category: Category) => ({
   payload: category,
 });
 
-/* export const getAllCategory = (category: Category) => ({
-  type: GET_ALL_CATEGORY,
-  payload: category,
-}); */
+export const getCapturedCategoryIdAction = (categoryId: string) => ({
+  type: GET_CAPTURED_CATEGORY_ID,
+  payload: categoryId,
+});

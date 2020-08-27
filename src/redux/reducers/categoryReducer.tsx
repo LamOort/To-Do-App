@@ -66,11 +66,7 @@ export function categoryReducer(
     case GET_CAPTURED_CATEGORY_ID:
       return {
         ...state,
-        capturedCategoryId: Object.assign(
-          {},
-          state.capturedCategoryId,
-          action.payload
-        ),
+        capturedCategoryId: action.payload,
       };
     default:
       return state;

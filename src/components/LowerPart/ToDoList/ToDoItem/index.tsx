@@ -5,10 +5,11 @@ import { TOGGLE_TODO } from '../../../../types';
 
 import './ToDoItem.scss';
 import { setModalType } from '../../../../redux/actions/modalActions';
+import { getCapturedTodoIdAction } from '../../../../redux/actions/todoActions';
 
 interface Props {
   todoId: string;
-  categoryColor: string;
+  categoryColor?: string;
   toDoDescription: string;
   toDoCompleted: boolean;
 }
@@ -23,6 +24,7 @@ const ToDoItem = ({
 
   const categoryColorStyle = {
     backgroundColor: `${categoryColor}`,
+    cursor: 'pointer',
   };
 
   return (
@@ -41,6 +43,10 @@ const ToDoItem = ({
       </div>
 
       <div
+        onClick={() => {
+          dispatch(getCapturedTodoIdAction(todoId));
+          dispatch(setModalType('ChooseCategory'));
+        }}
         className="ToDoItem__category-color"
         style={categoryColorStyle}
       ></div>

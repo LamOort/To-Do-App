@@ -92,7 +92,7 @@ interface DeleteCategoryAction {
 
 interface GetCapturedCategoryIdAction {
     type: typeof GET_CAPTURED_CATEGORY_ID,
-    payload?: Category
+    payload: string
 }
 
 

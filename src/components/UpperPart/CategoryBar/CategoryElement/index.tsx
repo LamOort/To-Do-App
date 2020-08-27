@@ -16,7 +16,7 @@ const CategoryElement = ({
   categoryName,
   isModalStyle,
 }: Props) => {
-  const CategoryElementStyled: any = styled.div`
+ asdasd const CategoryElementStyled: any = styled.div`
     border-left: 10px solid ${categoryColor};
     transition: background-color 0.8s ease;
 

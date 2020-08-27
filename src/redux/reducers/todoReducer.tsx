@@ -76,7 +76,7 @@ export function todoReducer(
     case GET_CAPTURED_TODO_ID:
       return {
         ...state,
-        capturedTodoId: Object.assign({}, state.capturedTodoId, action.payload),
+        capturedTodoId: action.payload,
       };
 
     default:
