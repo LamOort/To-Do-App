@@ -6,9 +6,13 @@ import { RootState } from '../../../redux/reducers';
 import CategoryElement from '../../UpperPart/CategoryBar/CategoryElement';
 import { setModalType } from '../../../redux/actions/modalActions';
 
+import {
+  getCapturedCategoryIdAction,
+  getCapturedCategoryObjectAction,
+} from '../../../redux/actions/categoryActions';
+
 import './ChooseCategoryForm.scss';
-import { getCapturedCategoryIdAction } from '../../../redux/actions/categoryActions';
-import { Todo } from '../../../types';
+import { Category } from '../../../types';
 import { modifyTodoAction } from '../../../redux/actions/todoActions';
 
 const ChooseCategoryForm = () => {
@@ -16,11 +20,26 @@ const ChooseCategoryForm = () => {
     return state.categoriesGlobal.categories;
   }, shallowEqual);
 
-  const listOfTodos = useSelector((state: RootState) => {
-    return state.todosGlobal.todos;
+  const capturedTodoObject = useSelector((state: RootState) => {
+    return state.todosGlobal.capturedTodoObject;
   }, shallowEqual);
 
   const dispatch = useDispatch();
+
+  function changeTodoColorByCategoryColor() {
+    return async (dispatch: any, getState: any) => {
+      let stateSnapshot = getState();
+      const capturedCategoryObject = await stateSnapshot.capturedTodoObject;
+
+      const newTodoObj = Object.assign(
+        capturedTodoObject,
+        capturedCategoryObject.color
+      );
+      dispatch(modifyTodoAction(newTodoObj));
+
+      dispatch(setModalType(''));
+    };
+  }
 
   return (
     <div className="ChooseCategory__Form">
@@ -29,7 +48,14 @@ const ChooseCategoryForm = () => {
           return (
             <div
               onClick={() => {
-                dispatch(getCapturedCategoryIdAction(category.id));
+                dispatch(
+                  getCapturedCategoryObjectAction({
+                    id: category.id,
+                    name: category.name,
+                    color: category.color,
+                  })
+                );
+                changeTodoColorByCategoryColor();
               }}
             >
               <CategoryElement

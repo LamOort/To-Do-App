@@ -28,7 +28,7 @@ const ToDoList = React.memo((props: any) => {
             <ToDoItem
               key={todo.id}
               todoId={todo.id}
-              categoryColor={todo.categoryColor}
+              todoCategoryColor={todo.categoryColor}
               toDoDescription={todo.description}
               toDoCompleted={todo.completed}
             />
@@ -46,7 +46,7 @@ const ToDoList = React.memo((props: any) => {
             <ToDoItem
               key={todo.id}
               todoId={todo.id}
-              categoryColor={todo.categoryColor}
+              todoCategoryColor={todo.categoryColor}
               toDoDescription={todo.description}
               toDoCompleted={todo.completed}
             />
@@ -64,7 +64,7 @@ const ToDoList = React.memo((props: any) => {
             <ToDoItem
               key={todo.id}
               todoId={todo.id}
-              categoryColor={todo.categoryColor}
+              todoCategoryColor={todo.categoryColor}
               toDoDescription={todo.description}
               toDoCompleted={todo.completed}
             />

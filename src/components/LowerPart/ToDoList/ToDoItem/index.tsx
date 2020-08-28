@@ -5,25 +5,28 @@ import { TOGGLE_TODO } from '../../../../types';
 
 import './ToDoItem.scss';
 import { setModalType } from '../../../../redux/actions/modalActions';
-import { getCapturedTodoIdAction } from '../../../../redux/actions/todoActions';
+import {
+  getCapturedTodoIdAction,
+  getCapturedTodoObjectAction,
+} from '../../../../redux/actions/todoActions';
 
 interface Props {
   todoId: string;
-  categoryColor?: string;
+  todoCategoryColor: string;
   toDoDescription: string;
   toDoCompleted: boolean;
 }
 
 const ToDoItem = ({
   todoId,
-  categoryColor,
+  todoCategoryColor,
   toDoDescription,
   toDoCompleted,
 }: Props) => {
   const dispatch = useDispatch();
 
   const categoryColorStyle = {
-    backgroundColor: `${categoryColor}`,
+    backgroundColor: `${todoCategoryColor}`,
     cursor: 'pointer',
   };
 
@@ -45,6 +48,14 @@ const ToDoItem = ({
       <div
         onClick={() => {
           dispatch(getCapturedTodoIdAction(todoId));
+          dispatch(
+            getCapturedTodoObjectAction({
+              id: todoId,
+              description: toDoDescription,
+              completed: toDoCompleted,
+              categoryColor: todoCategoryColor,
+            })
+          );
           dispatch(setModalType('ChooseCategory'));
         }}
         className="ToDoItem__category-color"

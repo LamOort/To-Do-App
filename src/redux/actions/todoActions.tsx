@@ -2,9 +2,10 @@ import {
   ADD_TODO,
   TOGGLE_TODO,
   DELETE_TODO,
-  MODIFY_TODO,
   Todo,
   GET_CAPTURED_TODO_ID,
+  MODIFY_TODO,
+  GET_CAPTURED_TODO_OBJECT,
 } from '../../types';
 
 export const addTodoAction = (todo: Todo) => ({
@@ -30,4 +31,9 @@ export const modifyTodoAction = (todo: Todo) => ({
 export const getCapturedTodoIdAction = (todoId: Todo['id']) => ({
   type: GET_CAPTURED_TODO_ID,
   payload: todoId,
+});
+
+export const getCapturedTodoObjectAction = (todo: Todo) => ({
+  type: GET_CAPTURED_TODO_OBJECT,
+  payload: todo,
 });

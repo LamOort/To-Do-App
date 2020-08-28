@@ -16,11 +16,12 @@ const CategoryElement = ({
   categoryName,
   isModalStyle,
 }: Props) => {
- asdasd const CategoryElementStyled: any = styled.div`
+  const CategoryElementStyled: any = styled.div`
     border-left: 10px solid ${categoryColor};
     transition: background-color 0.8s ease;
 
-    &:hover {
+    &:hover,
+    &:active {
       background-color: ${categoryColor};
     }
   `;

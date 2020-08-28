@@ -6,6 +6,8 @@ import {
   DELETE_CATEGORY,
   MODIFY_CATEGORY,
   GET_CAPTURED_CATEGORY_ID,
+  GET_CAPTURED_CATEGORY_OBJECT,
+  GET_CAPTURED_CATEGORY_COLOR,
 } from '../../types';
 
 const categoryInitialState: CategoryState = {
@@ -27,6 +29,8 @@ const categoryInitialState: CategoryState = {
     },
   ],
   capturedCategoryId: '',
+  capturedCategoryColor: '',
+  capturedCategoryObject: {},
 };
 
 export function categoryReducer(
@@ -47,6 +51,18 @@ export function categoryReducer(
         ),
       };
 
+    case GET_CAPTURED_CATEGORY_OBJECT:
+      return {
+        ...state,
+        capturedCategoryObject: action.payload,
+      };
+
+    case GET_CAPTURED_CATEGORY_COLOR:
+      return {
+        ...state,
+        capturedCategoryColor: action.payload,
+      };
+
     case MODIFY_CATEGORY:
       const categoryFound = state.categories.find(
         (category) => category.id === action.payload.id
@@ -63,6 +79,7 @@ export function categoryReducer(
           ],
         };
       else return state;
+
     case GET_CAPTURED_CATEGORY_ID:
       return {
         ...state,

@@ -7,6 +7,7 @@ import {
   DELETE_TODO,
   MODIFY_TODO,
   GET_CAPTURED_TODO_ID,
+  GET_CAPTURED_TODO_OBJECT,
 } from '../../types';
 
 const toDoInitialState: ToDoState = {
@@ -31,6 +32,7 @@ const toDoInitialState: ToDoState = {
     },
   ],
   capturedTodoId: '',
+  capturedTodoObject: {},
 };
 
 export function todoReducer(
@@ -73,10 +75,17 @@ export function todoReducer(
           ],
         };
       else return state;
+
     case GET_CAPTURED_TODO_ID:
       return {
         ...state,
         capturedTodoId: action.payload,
+      };
+
+    case GET_CAPTURED_TODO_OBJECT:
+      return {
+        ...state,
+        capturedTodoObject: action.payload,
       };
 
     default:

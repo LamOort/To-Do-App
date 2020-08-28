@@ -8,7 +8,8 @@ export interface Todo {
 
 export interface ToDoState {
     todos: Todo[],
-    capturedTodoId: string
+    capturedTodoId: string,
+    capturedTodoObject: Object,
 }
 
 export interface Category {
@@ -19,7 +20,9 @@ export interface Category {
 
 export interface CategoryState {
     categories: Category[],
-    capturedCategoryId: string
+    capturedCategoryId: string,
+    capturedCategoryColor: string,
+    capturedCategoryObject: Object,
 }
 
 export interface ModalState {
@@ -36,12 +39,18 @@ export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const MODIFY_TODO = 'MODIFY_TODO';
 export const GET_CAPTURED_TODO_ID = 'GET_CAPTURED_TODO_ID';
+export const GET_CAPTURED_TODO_OBJECT = 'GET_CAPTURED_TODO_OBJECT';
 
 
 
 interface GetCapturedTodoIdAction {
     type: typeof GET_CAPTURED_TODO_ID,
     payload: Todo['id']
+}
+
+interface GetCapturedTodoObjectAction {
+    type: typeof GET_CAPTURED_TODO_OBJECT,
+    payload: Todo
 }
 
 interface ToggleTodoAction {
@@ -64,7 +73,7 @@ interface ModifyTodoAction {
     payload: Todo
 }
 
-export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetCapturedTodoIdAction | ModifyTodoAction | ToggleTodoAction;
+export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetCapturedTodoIdAction | ModifyTodoAction | ToggleTodoAction | GetCapturedTodoObjectAction;
 
 //2) Types related to Category
 
@@ -72,6 +81,8 @@ export const ADD_CATEGORY = 'ADD_CATEGORY'
 export const MODIFY_CATEGORY = 'MODIFY_CATEGORY'
 export const DELETE_CATEGORY = 'DELETE_CATEGORY'
 export const GET_CAPTURED_CATEGORY_ID = 'GET_CAPTURED_CATEGORY_ID'
+export const GET_CAPTURED_CATEGORY_OBJECT = 'GET_CAPTURED_CATEGORY_OBJECT'
+export const GET_CAPTURED_CATEGORY_COLOR = 'GET_CAPTURED_CATEGORY_COLOR'
 
 
 interface AddCategoryAction {
@@ -95,9 +106,19 @@ interface GetCapturedCategoryIdAction {
     payload: string
 }
 
+interface GetCapturedCategoryObjectAction {
+    type: typeof GET_CAPTURED_CATEGORY_OBJECT,
+    payload: Category
+}
+
+interface GetCapturedCategoryColorAction {
+    type: typeof GET_CAPTURED_CATEGORY_COLOR,
+    payload: Category['color']
+}
 
 
-export type CategoryActionTypes = AddCategoryAction | ModifyCategoryAction | DeleteCategoryAction | GetCapturedCategoryIdAction;
+
+export type CategoryActionTypes = AddCategoryAction | ModifyCategoryAction | DeleteCategoryAction | GetCapturedCategoryIdAction | GetCapturedCategoryObjectAction | GetCapturedCategoryColorAction;
 
 
 //Types related to PopUpModal
