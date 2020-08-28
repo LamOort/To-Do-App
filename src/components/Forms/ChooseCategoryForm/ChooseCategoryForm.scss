@@ -1,9 +1,15 @@
 .ChooseCategory {
   &__Wrapper {
+    position: relative;
     padding: 45px;
   }
 
   &__addbtn {
     cursor: pointer;
+  }
+
+  &__ticked-icon {
+    position: absolute;
+    left: 47%;
   }
 }

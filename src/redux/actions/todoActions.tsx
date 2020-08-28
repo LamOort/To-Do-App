@@ -23,7 +23,7 @@ export const deleteTodoAction = (todoId: Todo['id']) => ({
   payload: todoId,
 });
 
-export const modifyTodoAction = (todo: Todo) => ({
+export const modifyTodoAction = (todo: Object) => ({
   type: MODIFY_TODO,
   payload: todo,
 });

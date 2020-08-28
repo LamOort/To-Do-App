@@ -65,7 +65,11 @@ const ToDoItem = ({
 
       <div>
         <svg
-          onClick={() => dispatch(setModalType('DeleteTask'))}
+          onClick={() => {
+            dispatch(getCapturedTodoIdAction(todoId));
+
+            dispatch(setModalType('DeleteTask'));
+          }}
           className="ToDoItem__delete-btn"
           id="trash-solid"
           xmlns="http://www.w3.org/2000/svg"

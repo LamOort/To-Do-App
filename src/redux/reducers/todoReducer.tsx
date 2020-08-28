@@ -60,21 +60,15 @@ export function todoReducer(
         todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
     case MODIFY_TODO:
-      const todoFound = state.todos.find(
-        (todo) => todo.id === action.payload.id
-      );
-      const todoFoundIndex = state.todos.findIndex(
-        (todo) => todo.id === action.payload.id
-      );
-      if (todoFound !== undefined)
-        return {
-          ...state,
-          todos: [
-            ...state.todos,
-            ...state.todos.splice(todoFoundIndex, 1, action.payload),
-          ],
-        };
-      else return state;
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          if (todo.id === action.payload.id) {
+            return action.payload;
+          }
+          return todo;
+        }),
+      };
 
     case GET_CAPTURED_TODO_ID:
       return {

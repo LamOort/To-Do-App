@@ -64,21 +64,15 @@ export function categoryReducer(
       };
 
     case MODIFY_CATEGORY:
-      const categoryFound = state.categories.find(
-        (category) => category.id === action.payload.id
-      );
-      const categoryFoundIndex = state.categories.findIndex(
-        (category) => category.id === action.payload.id
-      );
-      if (categoryFound !== undefined)
-        return {
-          ...state,
-          categories: [
-            ...state.categories,
-            ...state.categories.splice(categoryFoundIndex, 1, action.payload),
-          ],
-        };
-      else return state;
+      return {
+        ...state,
+        categories: state.categories.map((category) => {
+          if (category.id === action.payload.id) {
+            return action.payload;
+          }
+          return category;
+        }),
+      };
 
     case GET_CAPTURED_CATEGORY_ID:
       return {

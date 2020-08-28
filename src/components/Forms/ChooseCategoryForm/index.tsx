@@ -9,13 +9,15 @@ import { setModalType } from '../../../redux/actions/modalActions';
 import {
   getCapturedCategoryIdAction,
   getCapturedCategoryObjectAction,
+  getCapturedCategoryColorAction,
 } from '../../../redux/actions/categoryActions';
 
-import './ChooseCategoryForm.scss';
-import { Category } from '../../../types';
 import { modifyTodoAction } from '../../../redux/actions/todoActions';
 
+import './ChooseCategoryForm.scss';
+
 const ChooseCategoryForm = () => {
+  //GET STATES FROM STORE
   const listofCategories = useSelector((state: RootState) => {
     return state.categoriesGlobal.categories;
   }, shallowEqual);
@@ -24,22 +26,17 @@ const ChooseCategoryForm = () => {
     return state.todosGlobal.capturedTodoObject;
   }, shallowEqual);
 
+  const capturedCategoryColor = useSelector((state: RootState) => {
+    return state.categoriesGlobal.capturedCategoryColor;
+  }, shallowEqual);
+
+  //
+
   const dispatch = useDispatch();
 
-  function changeTodoColorByCategoryColor() {
-    return async (dispatch: any, getState: any) => {
-      let stateSnapshot = getState();
-      const capturedCategoryObject = await stateSnapshot.capturedTodoObject;
-
-      const newTodoObj = Object.assign(
-        capturedTodoObject,
-        capturedCategoryObject.color
-      );
-      dispatch(modifyTodoAction(newTodoObj));
-
-      dispatch(setModalType(''));
-    };
-  }
+  const newTodoObj = Object.assign(capturedTodoObject, {
+    categoryColor: capturedCategoryColor,
+  });
 
   return (
     <div className="ChooseCategory__Form">
@@ -55,7 +52,8 @@ const ChooseCategoryForm = () => {
                     color: category.color,
                   })
                 );
-                changeTodoColorByCategoryColor();
+
+                dispatch(getCapturedCategoryColorAction(category.color));
               }}
             >
               <CategoryElement
@@ -83,6 +81,40 @@ const ChooseCategoryForm = () => {
             transform="translate(0 -32)"
             fill="#ccc"
           />
+        </svg>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="35"
+          height="35"
+          viewBox="0 0 35 35"
+          className="ChooseCategory__ticked-icon"
+          onClick={() => {
+            dispatch(modifyTodoAction(newTodoObj));
+            dispatch(setModalType(''));
+          }}
+        >
+          <g
+            id="Group_10"
+            data-name="Group 10"
+            transform="translate(-523 -493)"
+          >
+            <circle
+              id="Ellipse_9"
+              data-name="Ellipse 9"
+              cx="17.5"
+              cy="17.5"
+              r="17.5"
+              transform="translate(523 493)"
+              fill="#f77062"
+            />
+            <path
+              id="check-solid"
+              d="M5.051,75.969.218,71.136a.744.744,0,0,1,0-1.051l1.051-1.051a.743.743,0,0,1,1.051,0l3.255,3.255,6.973-6.973a.743.743,0,0,1,1.051,0l1.051,1.051a.744.744,0,0,1,0,1.051L6.1,75.969a.743.743,0,0,1-1.051,0Z"
+              transform="translate(533.13 439.49)"
+              fill="#fff"
+            />
+          </g>
         </svg>
       </div>
     </div>
