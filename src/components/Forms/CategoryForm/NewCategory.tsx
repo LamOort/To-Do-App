@@ -4,20 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
 import { Category } from '../../../types';
-import {
-  getCapturedCategoryObjectAction,
-  getCapturedCategoryColorAction,
-  addCategoryAction,
-} from '../../../redux/actions/categoryActions';
+import { addCategoryAction } from '../../../redux/actions/categoryActions';
 import { setModalType } from '../../../redux/actions/modalActions';
 
 const NewCategoryForm = () => {
   const listofCategories = useSelector((state: RootState) => {
     return state.categoriesGlobal.categories;
-  }, shallowEqual);
-
-  const capturedCategoryObj = useSelector((state: RootState) => {
-    return state.categoriesGlobal.capturedCategoryObject;
   }, shallowEqual);
 
   const [colorDisplay, setColorDisplay] = useState('');
@@ -42,14 +34,21 @@ const NewCategoryForm = () => {
 
   const handlerOnSubmit = () => {
     if (colorValidCheckRegex.test(colorDisplay)) {
-      const newCategoryObj = {
-        id: uuidv4(),
-        name: nameDisplay,
-        color: colorDisplay,
-      };
-      dispatch(addCategoryAction(newCategoryObj));
-      dispatch(setModalType(''));
-    } else alert('Invalid color code, please try again.');
+      if (nameDisplay === '') {
+        alert('Empty name field! Please check again');
+      } else {
+        const newCategoryObj = {
+          id: uuidv4(),
+          name: nameDisplay,
+          color: colorDisplay,
+        };
+        dispatch(addCategoryAction(newCategoryObj));
+        dispatch(setModalType(''));
+      }
+    }
+    if (!colorValidCheckRegex.test(colorDisplay)) {
+      alert('Invalid color code, please try again.');
+    }
   };
 
   return (

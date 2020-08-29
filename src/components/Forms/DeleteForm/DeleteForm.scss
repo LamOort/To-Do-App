@@ -1,0 +1,45 @@
+.DeleteForm {
+  &__Wrapper {
+    position: relative;
+    width: 254px;
+    height: 102px;
+    margin-top: 111px;
+    margin-left: 35px;
+  }
+
+  &__btn {
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+
+    &--delete {
+      border-radius: 27px;
+      background-color: #ff3838;
+      width: 100%;
+      height: 53px;
+      color: #ffffff;
+      border: none;
+    }
+
+    &:active,
+    &:focus {
+      outline: 0;
+    }
+
+    &--cancel {
+      width: 100%;
+      margin-top: 30px;
+      color: #ff3838;
+      background-color: #ffffff;
+      border: none;
+
+      &:active,
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}

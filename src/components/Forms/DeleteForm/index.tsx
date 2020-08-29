@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
-import {
-  deleteTodoAction,
-  getCapturedTodoIdAction,
-} from '../../../redux/actions/todoActions';
+import { deleteTodoAction } from '../../../redux/actions/todoActions';
 import { setModalType } from '../../../redux/actions/modalActions';
 import { deleteCategoryAction } from '../../../redux/actions/categoryActions';
+
+import './DeleteForm.scss';
 
 interface deleteFormProps {
   deleteType: string;
@@ -24,8 +23,9 @@ const DeleteForm = ({ deleteType }: deleteFormProps) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="DeleteForm__Wrapper">
       <button
+        className="DeleteForm__btn DeleteForm__btn--delete"
         onClick={() => {
           if (deleteType === 'task') {
             dispatch(deleteTodoAction(todoIdCaptured));
@@ -37,14 +37,15 @@ const DeleteForm = ({ deleteType }: deleteFormProps) => {
           dispatch(setModalType(''));
         }}
       >
-        Delete this {deleteType}
+        <p>Delete this {deleteType}</p>
       </button>
       <button
+        className="DeleteForm__btn DeleteForm__btn--cancel"
         onClick={() => {
           dispatch(setModalType(''));
         }}
       >
-        Cancel
+        <p>Cancel</p>
       </button>
     </div>
   );

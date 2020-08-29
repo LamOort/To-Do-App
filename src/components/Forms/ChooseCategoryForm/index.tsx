@@ -7,7 +7,6 @@ import CategoryElement from '../../UpperPart/CategoryBar/CategoryElement';
 import { setModalType } from '../../../redux/actions/modalActions';
 
 import {
-  getCapturedCategoryIdAction,
   getCapturedCategoryObjectAction,
   getCapturedCategoryColorAction,
 } from '../../../redux/actions/categoryActions';

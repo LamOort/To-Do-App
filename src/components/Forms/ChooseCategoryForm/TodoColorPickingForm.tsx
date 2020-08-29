@@ -6,16 +6,7 @@ import { RootState } from '../../../redux/reducers';
 import CategoryElement from '../../UpperPart/CategoryBar/CategoryElement';
 import { setModalType } from '../../../redux/actions/modalActions';
 
-import {
-  getCapturedCategoryIdAction,
-  getCapturedCategoryObjectAction,
-  getCapturedCategoryColorAction,
-} from '../../../redux/actions/categoryActions';
-
-import {
-  modifyTodoAction,
-  getCapturedColorForTodoAction,
-} from '../../../redux/actions/todoActions';
+import { getCapturedColorForTodoAction } from '../../../redux/actions/todoActions';
 
 import './ChooseCategoryForm.scss';
 
