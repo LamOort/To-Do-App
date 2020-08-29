@@ -13,7 +13,7 @@ export const addCategoryAction = (category: Category) => ({
   payload: category,
 });
 
-export const deleteCategoryAction = (categoryId: Category['id']) => ({
+export const deleteCategoryAction = (categoryId?: string) => ({
   type: DELETE_CATEGORY,
   payload: categoryId,
 });

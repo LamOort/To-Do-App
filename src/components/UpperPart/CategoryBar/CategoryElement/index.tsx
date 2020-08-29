@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import './CategoryElement.scss';
 
 interface Props {
-  categoryId: string;
+  categoryId?: string;
   categoryColor: string;
-  categoryName: string;
+  categoryName?: string;
   isModalStyle: boolean;
 }
 
@@ -16,7 +16,7 @@ const CategoryElement = ({
   categoryName,
   isModalStyle,
 }: Props) => {
-  const CategoryElementStyled: any = styled.div`
+  const CategoryElementStyled = styled.div`
     border-left: 10px solid ${categoryColor};
     transition: background-color 0.8s ease;
 

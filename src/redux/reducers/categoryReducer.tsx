@@ -30,7 +30,9 @@ const categoryInitialState: CategoryState = {
   ],
   capturedCategoryId: '',
   capturedCategoryColor: '',
-  capturedCategoryObject: {},
+  capturedCategoryObject: {
+    color: '',
+  },
 };
 
 export function categoryReducer(

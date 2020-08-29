@@ -8,6 +8,7 @@ import {
   MODIFY_TODO,
   GET_CAPTURED_TODO_ID,
   GET_CAPTURED_TODO_OBJECT,
+  GET_CAPTURED_COLOR_FOR_TODO,
 } from '../../types';
 
 const toDoInitialState: ToDoState = {
@@ -33,6 +34,7 @@ const toDoInitialState: ToDoState = {
   ],
   capturedTodoId: '',
   capturedTodoObject: {},
+  capturedColorForTodo: '',
 };
 
 export function todoReducer(
@@ -80,6 +82,12 @@ export function todoReducer(
       return {
         ...state,
         capturedTodoObject: action.payload,
+      };
+
+    case GET_CAPTURED_COLOR_FOR_TODO:
+      return {
+        ...state,
+        capturedColorForTodo: action.payload,
       };
 
     default:

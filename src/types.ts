@@ -10,11 +10,12 @@ export interface ToDoState {
     todos: Todo[],
     capturedTodoId: string,
     capturedTodoObject: Object,
+    capturedColorForTodo: string,
 }
 
 export interface Category {
-    id: string,
-    name: string,
+    id?: string,
+    name?: string,
     color: string
 }
 
@@ -22,7 +23,11 @@ export interface CategoryState {
     categories: Category[],
     capturedCategoryId: string,
     capturedCategoryColor: string,
-    capturedCategoryObject: Object,
+    capturedCategoryObject: {
+        id?: string,
+        name?: string,
+        color: string
+    },
 }
 
 export interface ModalState {
@@ -40,6 +45,7 @@ export const DELETE_TODO = 'DELETE_TODO';
 export const MODIFY_TODO = 'MODIFY_TODO';
 export const GET_CAPTURED_TODO_ID = 'GET_CAPTURED_TODO_ID';
 export const GET_CAPTURED_TODO_OBJECT = 'GET_CAPTURED_TODO_OBJECT';
+export const GET_CAPTURED_COLOR_FOR_TODO = 'GET_CAPTURED_COLOR_FOR_TODO';
 
 
 
@@ -51,6 +57,11 @@ interface GetCapturedTodoIdAction {
 interface GetCapturedTodoObjectAction {
     type: typeof GET_CAPTURED_TODO_OBJECT,
     payload: Todo
+}
+
+interface GetCapturedColorForTodoAction {
+    type: typeof GET_CAPTURED_COLOR_FOR_TODO,
+    payload: string
 }
 
 interface ToggleTodoAction {
@@ -65,7 +76,7 @@ interface AddTodoAction {
 
 interface DeleteTodoAction {
     type: typeof DELETE_TODO,
-    payload: Todo['id']
+    payload?: string
 }
 
 interface ModifyTodoAction {
@@ -73,7 +84,7 @@ interface ModifyTodoAction {
     payload: Todo
 }
 
-export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetCapturedTodoIdAction | ModifyTodoAction | ToggleTodoAction | GetCapturedTodoObjectAction;
+export type TodoActionTypes = AddTodoAction | DeleteTodoAction | GetCapturedTodoIdAction | ModifyTodoAction | ToggleTodoAction | GetCapturedTodoObjectAction | GetCapturedColorForTodoAction;
 
 //2) Types related to Category
 

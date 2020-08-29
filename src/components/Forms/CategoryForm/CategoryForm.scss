@@ -1,0 +1,78 @@
+@import 'src/assets/sass/variables';
+
+.CategoryForm {
+  position: relative;
+  padding: 45px 33px 70px 45px;
+
+  &__label {
+    font-size: 8px;
+    font-weight: bold;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: $light-grey;
+
+    &--color {
+      display: inline-block;
+      margin-top: 40.8px;
+
+      &::placeholder {
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: bold;
+        color: $light-grey;
+      }
+    }
+  }
+
+  &__input {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: inherit;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: 1.7px solid $light-grey;
+
+    &:focus {
+      outline: none;
+    }
+
+    &--color {
+      width: 78px;
+    }
+  }
+
+  &__ColorDisplay {
+    width: 111px;
+    height: 25px;
+    margin-top: 8px;
+    background-color: #38c9ff;
+  }
+
+  &__colorItem {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  &__trash-icon {
+    position: absolute;
+    bottom: 0;
+    left: 45px;
+    cursor: pointer;
+  }
+
+  &__ticked-icon {
+    position: absolute;
+    bottom: 0;
+    left: 47%;
+    cursor: pointer;
+  }
+}
+
+.flexbox-container {
+  display: flex;
+  width: 100%;
+  margin-top: 21px;
+  justify-content: space-between;
+}

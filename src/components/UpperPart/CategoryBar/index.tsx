@@ -8,6 +8,7 @@ import { setModalType } from '../../../redux/actions/modalActions';
 import CategoryElement from './CategoryElement';
 import AddButton from '../../../assets/plus-solid.svg';
 import './CategoryBar.scss';
+import { getCapturedCategoryObjectAction } from '../../../redux/actions/categoryActions';
 
 const CategoryBar = () => {
   const listofCategories = useSelector((state: RootState) => {
@@ -20,7 +21,18 @@ const CategoryBar = () => {
     <div className="CategoryBar__flex-container">
       {listofCategories.map((category: Category) => {
         return (
-          <div onClick={() => dispatch(setModalType('Category'))}>
+          <div
+            onClick={() => {
+              dispatch(
+                getCapturedCategoryObjectAction({
+                  id: category.id,
+                  name: category.name,
+                  color: category.color,
+                })
+              );
+              dispatch(setModalType('Category'));
+            }}
+          >
             <CategoryElement
               key={category.id}
               categoryId={category.id}
@@ -35,7 +47,7 @@ const CategoryBar = () => {
       <button
         type="button"
         className="CategoryBar__add-btn"
-        onClick={() => dispatch(setModalType('Category'))}
+        onClick={() => dispatch(setModalType('NewCategory'))}
       >
         <img src={AddButton} alt="add button" />
       </button>

@@ -6,6 +6,7 @@ import {
   getCapturedTodoIdAction,
 } from '../../../redux/actions/todoActions';
 import { setModalType } from '../../../redux/actions/modalActions';
+import { deleteCategoryAction } from '../../../redux/actions/categoryActions';
 
 interface deleteFormProps {
   deleteType: string;
@@ -16,8 +17,8 @@ const DeleteForm = ({ deleteType }: deleteFormProps) => {
     return state.todosGlobal.capturedTodoId;
   });
 
-  const categoryIdCaptured = useSelector((state: RootState) => {
-    return state.categoriesGlobal.capturedCategoryId;
+  const capturedCategoryObj = useSelector((state: RootState) => {
+    return state.categoriesGlobal.capturedCategoryObject;
   });
 
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const DeleteForm = ({ deleteType }: deleteFormProps) => {
           }
 
           if (deleteType === 'category') {
-            dispatch(deleteTodoAction(categoryIdCaptured));
+            dispatch(deleteCategoryAction(capturedCategoryObj.id));
           }
           dispatch(setModalType(''));
         }}

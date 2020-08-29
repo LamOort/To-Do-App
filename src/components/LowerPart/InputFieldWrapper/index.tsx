@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import InputField from './InputField';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,11 +6,10 @@ import { setModalType } from '../../../redux/actions/modalActions';
 import { RootState } from '../../../redux/reducers';
 
 import './InputFieldWrapper.scss';
-import { getCapturedCategoryColorAction } from '../../../redux/actions/categoryActions';
 
 const InputFieldWrapper = () => {
   const colorChosen = useSelector((state: RootState) => {
-    return state.categoriesGlobal.capturedCategoryColor;
+    return state.todosGlobal.capturedColorForTodo;
   });
 
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ const InputFieldWrapper = () => {
         className="square-button"
         type="button"
         style={{ backgroundColor: colorChosen }}
-        onClick={() => dispatch(setModalType('ChooseCategory'))}
+        onClick={() => dispatch(setModalType('TodoColorPicking'))}
       ></button>
       <InputField />
     </div>

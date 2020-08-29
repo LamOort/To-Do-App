@@ -1,15 +1,29 @@
 .ChooseCategory {
   &__Wrapper {
-    position: relative;
-    padding: 45px;
+    padding: 45px 45px 0 45px;
+    margin-right: 1px;
+    display: block;
+    height: 194px;
+    overflow-y: scroll;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__addbtn {
+    position: absolute;
     cursor: pointer;
+    bottom: 35px;
   }
 
   &__ticked-icon {
     position: absolute;
     left: 47%;
+    bottom: 35px;
+    cursor: pointer;
   }
 }
