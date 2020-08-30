@@ -22,8 +22,8 @@ const StatusBar = (props: any) => {
 
   return (
     <div className="StatusBar">
-      <div>
-        <p className="StatusBar__text">{ongoingTodosCounter} tasks left</p>
+      <div className="StatusBar__text">
+        <p>{ongoingTodosCounter} tasks left</p>
       </div>
 
       <div className="StatusBar__filterWrapper">
@@ -42,6 +42,7 @@ const StatusBar = (props: any) => {
         >
           <p>all</p>
         </div>
+
         <div
           className={`StatusBar__filter StatusBar__filter--${
             changeBackground.ongoingClicked ? 'active' : 'inactive'

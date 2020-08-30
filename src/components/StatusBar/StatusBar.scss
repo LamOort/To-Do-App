@@ -51,3 +51,53 @@
     }
   }
 }
+
+@media only screen and (width: 375px) {
+  .StatusBar {
+    position: fixed;
+    height: 30px;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.16);
+
+    &__text {
+      position: absolute;
+      font-size: 10px;
+      font-weight: 600;
+      color: $brickish-red;
+      padding: 8px 84px 8px 20px;
+      width: 56px;
+    }
+
+    &__filterWrapper {
+      position: absolute;
+      display: flex;
+      height: 30px;
+      right: -15%;
+    }
+
+    &__filter {
+      display: flex;
+      font-size: 8px;
+      top: -10%;
+      text-transform: uppercase;
+      align-items: center;
+      font-weight: bold;
+      color: $brickish-red;
+
+      &--active {
+        color: #ffffff;
+        background-color: $brickish-red;
+      }
+      &--inactive {
+        color: $brickish-red;
+        background-color: #ffffff;
+      }
+    }
+  }
+}

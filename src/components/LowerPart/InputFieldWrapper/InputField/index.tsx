@@ -5,30 +5,37 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './InputField.scss';
 import { RootState } from '../../../../redux/reducers';
-import { addTodoAction } from '../../../../redux/actions/todoActions';
-import { getCapturedCategoryColorAction } from '../../../../redux/actions/categoryActions';
+import {
+  addTodoAction,
+  getCapturedColorForTodoAction,
+} from '../../../../redux/actions/todoActions';
 
 const InputField = () => {
   const [inputContent, setInputContent] = useState('');
 
   const colorPicked = useSelector((state: RootState) => {
-    return state.categoriesGlobal.capturedCategoryColor;
+    return state.todosGlobal.capturedColorForTodo;
   });
 
   const dispatch = useDispatch();
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
-      let newTodoObj = {
-        id: uuidv4(),
-        description: inputContent,
-        completed: false,
-        categoryColor: colorPicked,
-      };
+      if (colorPicked === '') {
+        alert('Please pick a color for your new todo task');
+        setInputContent('');
+      } else {
+        let newTodoObj = {
+          id: uuidv4(),
+          description: inputContent,
+          completed: false,
+          categoryColor: colorPicked,
+        };
 
-      dispatch(addTodoAction(newTodoObj));
-      dispatch(getCapturedCategoryColorAction('transparent'));
-      setInputContent('');
+        dispatch(addTodoAction(newTodoObj));
+        dispatch(getCapturedColorForTodoAction('transparent'));
+        setInputContent('');
+      }
     }
   };
 

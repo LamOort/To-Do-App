@@ -1,6 +1,7 @@
 @import 'src/assets/sass/variables';
 
 .ProgressionBar {
+  padding: 0 23.43vw 0 23.43vw;
   height: 50px;
   width: auto;
   margin-top: 5vh;
@@ -11,7 +12,6 @@
     height: 100%;
     max-width: 81%;
     background-color: $brickish-red;
-    text-align: right;
   }
 
   &__label {
@@ -19,5 +19,29 @@
     margin-left: 15px;
     color: $light-grey;
     font-size: 20px;
+  }
+}
+
+@media only screen and (width: 375px) {
+  .ProgressionBar {
+    padding: 0;
+    height: 30px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+
+    cursor: default;
+
+    &__colored-filler {
+      height: 100%;
+      max-width: 81%;
+      background-color: $brickish-red;
+    }
+
+    &__label {
+      margin-bottom: 5px;
+      color: $light-grey;
+      font-size: 16px;
+    }
   }
 }

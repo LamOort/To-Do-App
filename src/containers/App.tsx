@@ -28,8 +28,8 @@ const App = React.memo(() => {
         <div className="UpperPartWrapper">
           <Header />
           <CategoryBar />
-          <ProgressionBar />
         </div>
+        <ProgressionBar />
       </div>
 
       <div className="LowerPartWrapper">

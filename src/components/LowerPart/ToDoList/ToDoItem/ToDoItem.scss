@@ -87,23 +87,53 @@
   }
 }
 
-@-webkit-keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-@keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+@media only screen and (width: 375px) {
+  .ToDoItem {
+    display: flex;
+    height: auto;
+    width: 100%;
+
+    &:not(:last-child) {
+      padding-bottom: 30px;
+    }
+
+    &__check-box {
+      position: absolute;
+      height: 19px;
+      min-width: 19px;
+      border-radius: 50%;
+      border: 1px solid $light-grey;
+      background-color: #ffffff;
+      left: 0;
+      top: 0;
+
+      &:hover,
+      &:checked {
+        background-color: $brickish-red;
+        border: none;
+        -webkit-animation: scale-up-center 0.05s ease-out both;
+        animation: scale-up-center 0.05s ease-out both;
+      }
+    }
+
+    &__category-color {
+      height: 19px;
+      min-width: 19px;
+      margin-left: 15px;
+    }
+
+    &__to-do-content {
+      margin-left: 15px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    &__delete-btn {
+      position: relative;
+      bottom: 4px;
+      margin-left: 15px;
+      padding-bottom: 10px;
+      visibility: visible;
+    }
   }
 }

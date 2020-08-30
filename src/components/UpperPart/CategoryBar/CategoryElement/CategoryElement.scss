@@ -34,3 +34,24 @@
     }
   }
 }
+
+@media only screen and (width: 375px) {
+  .CategoryElement {
+    display: flex;
+    flex-direction: row-reverse;
+    cursor: pointer;
+    margin-right: 13px;
+
+    &:last-child {
+      margin-top: 15px;
+    }
+
+    &__text-part {
+      font-size: 16px;
+      padding-left: 8px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+  }
+}

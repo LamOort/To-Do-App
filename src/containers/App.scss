@@ -20,3 +20,13 @@
 .LowerPartWrapper {
   padding: 0 23.43vw 7.67vh 23.43vw;
 }
+
+@media only screen and (width: 375px) {
+  .UpperPartWrapper {
+    padding: 6vh 21vw 0 5.34vw;
+  }
+
+  .LowerPartWrapper {
+    padding: 0 20px 30px 20px;
+  }
+}

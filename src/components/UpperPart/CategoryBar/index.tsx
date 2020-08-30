@@ -22,6 +22,7 @@ const CategoryBar = () => {
       {listofCategories.map((category: Category) => {
         return (
           <div
+            className="CategoryBar_Element-wrapper"
             onClick={() => {
               dispatch(
                 getCapturedCategoryObjectAction({

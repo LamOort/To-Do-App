@@ -25,7 +25,7 @@ const ProgressionBar = () => {
   };
 
   return (
-    <div className="ProgressionBar">
+    <div className="ProgressionBar ">
       <div className="ProgressionBar__colored-filler" style={fillerStyle}></div>
       <span className="ProgressionBar__label">{`${completion}% Completed`}</span>
     </div>
