@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-import './InputField.scss';
+import { v4 as uuidv4 } from 'uuid';
+
 import { RootState } from '../../../../redux/reducers';
 import {
   addTodoAction,
   getCapturedColorForTodoAction,
 } from '../../../../redux/actions/todoActions';
+
+import './InputField.scss';
 
 const InputField = () => {
   const [inputContent, setInputContent] = useState('');

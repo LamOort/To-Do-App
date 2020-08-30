@@ -1,12 +1,10 @@
 import React from 'react';
-
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
+import { setModalType } from '../../../redux/actions/modalActions';
+import { getCapturedColorForTodoAction } from '../../../redux/actions/todoActions';
 
 import CategoryElement from '../../UpperPart/CategoryBar/CategoryElement';
-import { setModalType } from '../../../redux/actions/modalActions';
-
-import { getCapturedColorForTodoAction } from '../../../redux/actions/todoActions';
 
 import './ChooseCategoryForm.scss';
 

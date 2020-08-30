@@ -4,8 +4,9 @@ import { useSelector, shallowEqual } from 'react-redux';
 import ToDoItem from './ToDoItem';
 import { RootState } from '../../../redux/reducers';
 
-import './ToDoList.scss';
 import { Todo } from '../../../types';
+
+import './ToDoList.scss';
 
 const ToDoList = React.memo((props: any) => {
   const listOfTodos = useSelector((state: RootState) => {

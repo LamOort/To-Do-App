@@ -3,9 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
-import { Category } from '../../../types';
 import { addCategoryAction } from '../../../redux/actions/categoryActions';
 import { setModalType } from '../../../redux/actions/modalActions';
+
+import { Category } from '../../../types';
 
 const NewCategoryForm = () => {
   const listofCategories = useSelector((state: RootState) => {

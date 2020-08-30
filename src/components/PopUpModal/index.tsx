@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { RootState } from '../../redux/reducers';
 import { setModalType } from '../../redux/actions/modalActions';

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
-import './CategoryForm.scss';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
-import { Category } from '../../../types';
-
 import { setModalType } from '../../../redux/actions/modalActions';
 import { modifyCategoryAction } from '../../../redux/actions/categoryActions';
+
+import { Category } from '../../../types';
+
+import './CategoryForm.scss';
 
 const CategoryForm = () => {
   const listofCategories = useSelector((state: RootState) => {
@@ -23,10 +24,6 @@ const CategoryForm = () => {
 
   const dispatch = useDispatch();
 
-  /*  const ColorDisplayStyle = {
-    backgroundColor: { colorPicked },
-  }; */
-
   const nameInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNameDisplay(e.target.value);
   };
@@ -39,13 +36,18 @@ const CategoryForm = () => {
 
   const handlerOnSubmit = () => {
     if (colorValidCheckRegex.test(colorDisplay)) {
-      const modifiedCategoryObj = {
-        id: capturedCategoryObj.id,
-        name: nameDisplay,
-        color: colorDisplay,
-      };
-      dispatch(modifyCategoryAction(modifiedCategoryObj));
-      dispatch(setModalType(''));
+      if (nameDisplay === '') {
+        alert('Empty name field! Please check again');
+      }
+      if (nameDisplay !== '') {
+        const modifiedCategoryObj = {
+          id: capturedCategoryObj.id,
+          name: nameDisplay,
+          color: colorDisplay,
+        };
+        dispatch(modifyCategoryAction(modifiedCategoryObj));
+        dispatch(setModalType(''));
+      }
     } else alert('Invalid color code, please try again.');
   };
 
