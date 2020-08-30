@@ -1,44 +1,111 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome to Todo App
 
-## Available Scripts
+After cloning this project, please run these commands to be able to run the application on your local browser
 
-In the project directory, you can run:
+### `npm install` or `yarn install`
 
-### `yarn start`
+then
+### `npm start` or `yarn start`
+
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Application folders structure
 
-### `yarn test`
+```bash
+├───assets/
+│   ├───sass/
+│   │   ├───_keyframes.scss
+│   │   └───_variables.scss
+│   ├───plus-solid.svg
+│   ├───stepout-logo.svg
+│   ├───ticked_icon.svg
+│   ├───trash-solid-red.svg
+│   └───trash-solid.svg
+├───components/
+│   ├───Forms/
+│   │   ├───CategoryForm/
+│   │   │   ├───Category.tsx
+│   │   │   ├───CategoryForm.scss
+│   │   │   └───NewCategory.tsx
+│   │   ├───ChooseCategoryForm/
+│   │   │   ├───ChooseCategoryForm.scss
+│   │   │   ├───index.tsx
+│   │   │   └───TodoColorPickingForm.tsx
+│   │   └───DeleteForm/
+│   │       ├───DeleteForm.scss
+│   │       └───index.tsx
+│   ├───LowerPart/
+│   │   ├───InputFieldWrapper/
+│   │   │   ├───InputField/
+│   │   │   │   ├───index.tsx
+│   │   │   │   └───InputField.scss
+│   │   │   ├───index.tsx
+│   │   │   └───InputFieldWrapper.scss
+│   │   └───ToDoList/
+│   │       ├───ToDoItem/
+│   │       │   ├───index.tsx
+│   │       │   └───ToDoItem.scss
+│   │       ├───index.tsx
+│   │       └───ToDoList.scss
+│   ├───PopUpModal/
+│   │   ├───index.tsx
+│   │   └───PopUpModal.scss
+│   ├───StatusBar/
+│   │   ├───index.tsx
+│   │   └───StatusBar.scss
+│   └───UpperPart/
+│       ├───CategoryBar/
+│       │   ├───CategoryElement/
+│       │   │   ├───CategoryElement.scss
+│       │   │   └───index.tsx
+│       │   ├───CategoryBar.scss
+│       │   └───index.tsx
+│       ├───Header/
+│       │   ├───Header.scss
+│       │   └───index.tsx
+│       └───ProgressionBar/
+│           ├───index.tsx
+│           └───ProgressionBar.scss
+├───containers/
+│   ├───App.scss
+│   ├───App.test.tsx
+│   └───App.tsx
+├───redux/
+│   ├───actions/
+│   │   ├───categoryActions.tsx
+│   │   ├───modalActions.tsx
+│   │   └───todoActions.tsx
+│   ├───reducers/
+│   │   ├───categoryReducer.tsx
+│   │   ├───index.tsx
+│   │   ├───modalReducer.tsx
+│   │   └───todoReducer.tsx
+│   └───store.tsx
+├───index.css
+├───index.tsx
+├───react-app-env.d.ts
+├───serviceWorker.ts
+├───setupTests.ts
+└───types.ts
+```
+### Some words before we dive in
+  - I was kind of getting out of the standard convention of folder structuring in a React App when grouping several components to `UpperPart` folder and some on `LowerPart`. The reason behind this way thinking of mine is basically I visually realized the UI seperates the application into two parts and I decided to make my life easier when navigating around between components, so on and so fort.
+  
+### Technologies used and explanation
+  - In this project, I decided to use `React Functional-based Components` since it is the new innovative way of developing React apps due to `React Hooks` new features, then I chose to implement `Typescript` into development procedure, see how it would go and I have to say it was interesting but at the same time causing me some hipcups here and there with all the types declaration ( which lead to the delay of this project submission and I would like to send you the sincerest apology ). The last and the most important cog in my machine to be able to functionalize it is `Redux`, nothing special but basic, `Action Creators`, `Action Dispatch`, `Reducers` all combine together by a `store` then executed and consumed by the help from our friend `react-redux` library with `useSelector` and `useDispatch`. In addition, SCSS pre-processor was implemented for overall styling and `styled-components` package also has been used slightly.
+  
+### Pro(s), Con(s) and my thought about them
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+***Pros***
+  - Throughout the procedure of developing the Application, I had my chance to review the knowledge of React that I've once known and got my fingers dirty with getting off the learning curves of the new features of `React Hooks` and `Typescript` (since the last time I've used `React`, `Class-based components` with life-cycle is the only way to managing application states).
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+***Cons***
+  - There will possibly some performance issues if this app scale up and getting more features but so far nothing was noticed.
+  - Some of the actions could be more cleverly improve with the help of `Redux-thunk`, unfortunately, I was unable to setting it up with `Typescript`.
+  - Responsive for mobile does not perfectly behave as the PC version.
+  - Unit testing has not been implemented to the project yet.
+  
+  
+## That's all, thank you for having me.
