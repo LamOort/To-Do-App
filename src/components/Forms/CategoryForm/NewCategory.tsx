@@ -19,10 +19,6 @@ const NewCategoryForm = () => {
 
   const dispatch = useDispatch();
 
-  /*  const ColorDisplayStyle = {
-    backgroundColor: { colorPicked },
-  }; */
-
   const nameInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNameDisplay(e.target.value);
   };
